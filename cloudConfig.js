@@ -1,4 +1,5 @@
-const cloudinary = require('cloudinary').v2;
+const cloudinaryModule = require('cloudinary');
+const cloudinary = cloudinaryModule.v2;
 const CloudinaryStorage = require('multer-storage-cloudinary');
 
 
@@ -8,7 +9,7 @@ cloudinary.config({
     api_secret:process.env.CLOUD_SECRET_VALUE
 })
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary: cloudinaryModule,
   params: {
     folder: 'soham_devlepoment',
     allowedFormats: ["png","jpg","jpeg"],
