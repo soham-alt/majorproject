@@ -55,8 +55,8 @@ module.exports.showroute=async (req,res)=>{
 module.exports.createroute=async (req,res)=>{
      const newl= new Listing(req.body.listing);
      if(req.file){
-    let url=req.file.path;
-    let filename=req.file.filename;
+    let url=req.file.path || req.file.secure_url;
+    let filename=req.file.filename || req.file.public_id;
     console.log(url,"..",filename);
     newl.image={url,filename};
      }else{
@@ -93,7 +93,7 @@ module.exports.updateroute=async(req,res)=>{
         if(listing.image && listing.image.filename && listing.image.filename !== "default_listing_image" && listing.image.filename !== "listingimage"){
             await cloudinary.uploader.destroy(listing.image.filename);
         }
-        listing.image={url:req.file.path,filename:req.file.filename};
+        listing.image={url:req.file.path || req.file.secure_url,filename:req.file.filename || req.file.public_id};
      }
      await listing.save();
 
