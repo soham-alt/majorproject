@@ -1,0 +1,73 @@
+<% layout("/layout/boilerplate.ejs") %>
+
+<body>
+    <div id="filters">
+        <div class="filter active-filter">
+            <i class="fa-solid fa-fire"></i>
+            <p>Trending</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-bed"></i>
+            <p>Rooms</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-city"></i>
+            <p>Iconic Cities</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-mountain-sun"></i>
+            <p>Mountains</p>
+        </div>
+        <div class="filter">
+            <i class="fa-brands fa-fort-awesome"></i>
+            <p>Castles</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-person-swimming"></i>
+            <p>Amazing Pools</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-campground"></i>
+            <p>Camping</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-tractor"></i>
+            <p>Farms</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-snowflake"></i>
+            <p>Arctic</p>
+        </div>
+    </div>
+    <!-- <form method="GET" action="/listing/new">
+        <button>Create new listings</button>
+    </form> -->
+    <% if(typeof search !== "undefined" && search){ %>
+        <p class="search-result-text">Showing listings in "<%= search %>"</p>
+    <% } %>
+    <% if(allisting.length === 0){ %>
+        <div class="empty-listings">
+            <h4>No listings found</h4>
+            <p>Try searching another location.</p>
+        </div>
+    <% } %>
+    <div class="row row-cols-lg-3 row row-cols-md-2 row row-cols-sm-1 mt-3">
+    <% for(let listing of allisting){ %>
+     <a href="/listings/<%= listing._id  %>" class="listdiv">
+    <div class="card col listing-card" >
+  <img src="<%=listing.image.url %>" class="card-img-top" alt="listing_image" style="height: 20rem;">
+  
+  <div class="card-body">
+    <p class="card-text">
+        <b><%= listing.title %><br></b>
+        &#8377;<%= listing.price?.toLocaleString("en-IN") %>
+    </p>
+     
+  </div>
+</div>
+<% } %> 
+    </div>
+    
+    
+</body>
+
