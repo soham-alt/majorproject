@@ -33,6 +33,6 @@ module.exports.logoutuser=(req,res)=>{
             return next(err)
         }
         req.flash("success","logged out !");
-        res.redirect("listings");
+        res.redirect("/listings");
     })
 }

@@ -112,6 +112,11 @@ const validateReview=(req,res,next)=>{
 }
 
 
+//root route
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 //index route 
 app.get("/listings",
     wrapAsync(listingController.index));
